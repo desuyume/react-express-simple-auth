@@ -7,6 +7,11 @@ export interface IUser {
 
 type RoleType = 'user' | 'admin' 
 
+export enum UserRoles {
+	USER = 'user',
+	ADMIN = 'admin',
+}
+
 export interface IUserWithTokens {
 	accessToken: string
 	refreshToken: string

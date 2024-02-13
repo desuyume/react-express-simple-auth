@@ -1,3 +1,4 @@
+import Admin from '../pages/Admin'
 import Login from '../pages/Login'
 import Main from '../pages/Main'
 import Registration from '../pages/Registration'
@@ -9,3 +10,8 @@ export const publicRoutes: IRoute[] = [
 ]
 
 export const privateRoutes: IRoute[] = [{ path: '/', element: <Main /> }]
+
+export const adminRoutes: IRoute[] = [
+	{ path: '/', element: <Main /> },
+	{ path: '/admin', element: <Admin /> },
+]

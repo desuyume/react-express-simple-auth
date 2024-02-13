@@ -11,15 +11,24 @@ class UserService {
 				login,
 				password,
 				name,
+			},
+			{
+				withCredentials: true,
 			}
 		)
 	}
 
 	async login(login: string, password: string) {
-		return await axios.post<any, IUserTokenResponse>(`${this.URL}/login`, {
-			login,
-			password,
-		})
+		return await axios.post<any, IUserTokenResponse>(
+			`${this.URL}/login`,
+			{
+				login,
+				password,
+			},
+			{
+				withCredentials: true,
+			}
+		)
 	}
 
 	async logout() {

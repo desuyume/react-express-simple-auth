@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import userService from '../services/user.service'
 import { UserContext } from '../Context'
 import { toast } from 'react-toastify'
+import { AxiosError } from 'axios'
 
 const Registration: FC = () => {
 	const [name, setName] = useState<string>('')
@@ -35,7 +36,11 @@ const Registration: FC = () => {
 			userContext?.setUser(response.data.user)
 			toast('Регистрация успешна!')
 		} catch (e) {
-			console.log(e)
+			if (e instanceof AxiosError) {
+				toast(e.response?.data.message)
+			} else {
+				toast('Непредвиденная ошибка')
+			}
 		}
 	}
 
@@ -59,6 +64,7 @@ const Registration: FC = () => {
 				onChange={e => setPassword(e.target.value)}
 				placeholder='Пароль'
 				required
+				type='password'
 			/>
 
 			<button>Зарегистрироваться</button>

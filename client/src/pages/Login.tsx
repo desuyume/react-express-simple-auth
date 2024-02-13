@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import userService from '../services/user.service'
 import { UserContext } from '../Context'
 import { toast } from 'react-toastify'
+import { AxiosError } from 'axios'
 
 const Login: FC = () => {
 	const [login, setLogin] = useState<string>('')
@@ -19,7 +20,11 @@ const Login: FC = () => {
 			userContext?.setUser(response.data.user)
 			toast('Вы успешно вошли!')
 		} catch (e) {
-			console.log(e)
+			if (e instanceof AxiosError) {
+				toast(e.response?.data.message)
+			} else {
+				toast('Непредвиденная ошибка')
+			}
 		}
 	}
 
@@ -27,8 +32,17 @@ const Login: FC = () => {
 		<form onSubmit={e => handleLogin(e)}>
 			<h2>Вход</h2>
 
-			<input value={login} onChange={e => setLogin(e.target.value)} placeholder='Логин' />
-			<input value={password} onChange={e => setPassword(e.target.value)} placeholder='Пароль' />
+			<input
+				value={login}
+				onChange={e => setLogin(e.target.value)}
+				placeholder='Логин'
+			/>
+			<input
+				value={password}
+				onChange={e => setPassword(e.target.value)}
+				placeholder='Пароль'
+				type='password'
+			/>
 
 			<button>Войти</button>
 

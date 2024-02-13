@@ -36,3 +36,15 @@ form h2 {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+.admin-bttn, .main-bttn {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+}
+
+.logout-bttn {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+}
